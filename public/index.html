@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Человек-паук — Кинотека</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕷️</text></svg>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Форма авторизации -->
+    <div id="authForm" class="auth-container">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <span class="material-icons" style="font-size: 64px;">theaters</span>
+            </div>
+            <h1 id="authTitle">С возвращением</h1>
+            <p>Кинотека Человека-паука: отмечай, что посмотрел и где остановился</p>
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" data-mode="login">Вход</button>
+                <button type="button" class="auth-tab" data-mode="register">Регистрация</button>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <span class="material-icons input-icon">person</span>
+                    <input type="text" id="loginInput" placeholder="Логин" autocomplete="username" required>
+                </div>
+                <div class="input-group">
+                    <span class="material-icons input-icon">lock</span>
+                    <input type="password" id="passwordInput" placeholder="Пароль" autocomplete="current-password" required>
+                </div>
+                <button type="submit">
+                    <span class="material-icons">login</span> <span id="authSubmitText">Войти</span>
+                </button>
+                <div id="authError" class="auth-error"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div id="mainContent" class="main-content" style="display:none;">
+        <header class="header">
+            <div class="header-left">
+                <span class="material-icons logo-icon">theaters</span>
+                <span class="logo">Spider-Man</span>
+                <span class="subtitle">Кинотека</span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons user-icon">account_circle</span>
+                <span id="userDisplay" class="user-name"></span>
+                <button id="logoutBtn" class="logout-btn">
+                    <span class="material-icons">logout</span> Выйти
+                </button>
+            </div>
+        </header>
+
+        <section class="progress-section">
+            <h2>
+                <span class="material-icons section-icon">bookmark</span>
+                Вы остановились здесь
+            </h2>
+            <div id="progressList" class="progress-list"></div>
+        </section>
+
+        <section class="movies-section">
+            <h2>
+                <span class="material-icons section-icon">movie</span>
+                Все фильмы
+            </h2>
+            <div id="moviesGrid" class="movies-grid"></div>
+        </section>
+
+        <!-- Плеер -->
+        <div id="playerModal" class="player-modal" style="display:none;">
+            <div class="player-content">
+                <div class="player-header">
+                    <h3 id="playerTitle">Название фильма</h3>
+                    <button id="closePlayer" class="close-btn">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <iframe id="playerIframe" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                <div class="player-controls">
+                    <div class="progress-control">
+                        <span class="material-icons control-icon">access_time</span>
+                        <label>Время просмотра:</label>
+                        <input type="text" id="timestampInput" placeholder="чч:мм:сс">
+                        <button id="saveProgressBtn" class="save-btn">
+                            <span class="material-icons">save</span> Сохранить
+                        </button>
+                    </div>
+                    <div class="status-control">
+                        <button class="status-btn" data-status="not_started">
+                            <span class="material-icons">hourglass_empty</span> Не начато
+                        </button>
+                        <button class="status-btn" data-status="in_progress">
+                            <span class="material-icons">play_circle</span> В процессе
+                        </button>
+                        <button class="status-btn" data-status="completed">
+                            <span class="material-icons">check_circle</span> Просмотрено
+                        </button>
+                    </div>
+                    <div id="playerStatus" class="player-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
